@@ -1,0 +1,47 @@
+***Crear projecto ocn nombre libreria*****
+composer create-project laravel/laravel libreria
+
+****Configurar DB****
+
+ir a .env y configurar con tus datos de la base de datos
+
+****Crear migraciones*****
+php artisan make:migration libros
+
+****Crear tablas en la db******
+
+dentro de la migracion creada ir a public function up()
+
+    public function up()
+    {
+        //
+        Schema::create('libros', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nombre');
+            $table->string('precio');
+            $table->timestamps();
+        });
+    }
+
+php artisan migrate
+
+***Instalar bootsteap*****
+
+composer require laravael/ui
+php artisan ui bootstrap --auth
+npm install
+npm run development
+
+****Instalar paquete de crud****
+
+github.com/awais-vteams/laravel-crud-generator
+
+composer require ibex/crud-generator --dev
+php artisan vendor:publish --tag=crud
+php artisan make:crud libros
+
+despues ir a routes/web.php
+Route::resource('libros', App\Http\Controllers\LibroController::class)->middleware('auth');
+
+
+
